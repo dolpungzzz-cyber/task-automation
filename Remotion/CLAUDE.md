@@ -1,5 +1,37 @@
 # Remotion Video Project
 
+## GitHub 저장소
+
+- **Repository**: `https://github.com/dolpungzzz-cyber/task-automation`
+- **구조**: `업무자동화/` 폴더 전체를 하나의 repo로 관리
+- **브랜치**: `main`
+- **gh CLI 경로** (임시): `%TEMP%\gh_cli\bin\gh.exe`
+
+### 새 프로젝트를 시작할 때
+
+```bash
+# 1. 업무자동화/ 하위에 새 폴더로 프로젝트 생성
+cd C:/Users/cheon/Desktop/업무자동화
+npx create-video@latest --yes --blank --no-tailwind <project-name>
+
+# 2. 작업 후 커밋 & 푸시
+git add <project-name>/
+git commit -m "feat: add <project-name>"
+git push
+```
+
+### GitHub CLI (gh) 사용
+
+```bash
+$gh = "$env:TEMP\gh_cli\bin\gh.exe"
+& $gh repo list dolpungzzz-cyber   # 저장소 목록
+& $gh auth status                  # 인증 상태 확인
+```
+
+> **인증 만료 시**: `& $gh auth login --hostname github.com --git-protocol https --web` 실행 후 브라우저에서 디바이스 코드 입력
+
+---
+
 ## Skill
 
 When the user requests video creation, editing, animation, or any Remotion-related task, always invoke the `remotion-best-practices` skill first:
