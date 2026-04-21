@@ -9,7 +9,28 @@
       "Bash(claude mcp *)",
       "mcp__Claude_in_Chrome__navigate",
       "mcp__Claude_in_Chrome__computer",
-      "mcp__Claude_in_Chrome__javascript_tool"
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "PowerShell(git config --global user.name)",
+      "PowerShell(git config --global user.email)",
+      "PowerShell(gh --version 2>&1)",
+      "PowerShell(git -C \"C:\\\\Users\\\\cheon\\\\Desktop\\\\�����ڵ�ȭ\\\\Remotion\" status 2>&1)",
+      "PowerShell(git -C \"C:\\\\Users\\\\cheon\\\\Desktop\\\\�����ڵ�ȭ\\\\Remotion\" remote -v 2>&1)",
+      "PowerShell(git -C \"C:\\\\Users\\\\cheon\\\\Desktop\\\\�����ڵ�ȭ\\\\Remotion\" log --oneline -5 2>&1)",
+      "mcp__Claude_in_Chrome__tabs_create_mcp",
+      "PowerShell(git config --global credential.helper)",
+      "PowerShell(git config --list --global)",
+      "PowerShell(git -C \"C:\\\\Users\\\\cheon\\\\Desktop\\\\�����ڵ�ȭ\" remote -v 2>&1)",
+      "PowerShell(git -C \"C:\\\\Users\\\\cheon\\\\Desktop\\\\�����ڵ�ȭ\" log --oneline -3 2>&1)",
+      "PowerShell(git -C \"C:\\\\Users\\\\cheon\\\\Desktop\\\\�����ڵ�ȭ\" status 2>&1)",
+      "PowerShell(cmdkey /list)",
+      "PowerShell(Select-String \"github\" -CaseSensitive:$false)",
+      "PowerShell($cred = Get-StoredCredential -Target \"GitHub - https://api.github.com/dolpungzzz-cyber\" 2>&1; \"Result: $cred\")",
+      "PowerShell(git ls-remote \"https://github.com/dolpungzzz-cyber/�����ڵ�ȭ.git\" 2>&1)",
+      "PowerShell(winget install GitHub.cli --silent --accept-package-agreements --accept-source-agreements 2>&1)",
+      "PowerShell(choco install gh -y 2>&1)",
+      "PowerShell(git ls-remote \"https://github.com/dolpungzzz-cyber\" 2>&1)",
+      "PowerShell(Select-String \"git\\\\|github\\\\|token\" -CaseSensitive:$false)",
+      "Bash(npx create-video@latest --yes --blank --no-tailwind medical-waste-esg)"
     ]
   }
 }
