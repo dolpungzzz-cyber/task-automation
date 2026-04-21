@@ -264,3 +264,113 @@ const brandPurple   = '#8b3dff';    // Canva 브랜드 퍼플 (UI 요소)
 4. 색보정 없이 자연스러운 AI 영상 톤 유지
 5. 타이포그래피는 Canva Sans(Noto Sans) 계열 사용
 6. UI 강조 요소는 **브랜드 퍼플(`#8b3dff`)** 또는 **틸(`#00c4cc`)** 사용
+
+---
+
+## 실사화 영상 제작 가이드 (등장인물 + 실제 배경)
+
+> **트리거**: 사용자가 "실사 영상", "실제 인물이 등장", "사람이 나오는 영상", "실제 장소" 등을 언급할 때 이 섹션을 우선 참조.
+
+### 개요
+
+실제 사람·장소가 등장하는 영상은 Remotion 단독으로 제작 불가. 반드시 **AI 영상 생성 도구로 클립 생성 → Remotion으로 합성·편집** 워크플로를 따른다.
+
+### 도구 선택 기준
+
+| 상황 | 추천 도구 | URL | 비고 |
+|---|---|---|---|
+| 한국어 프롬프트, 무료로 시작 | **Kling AI** | https://kling.ai | 한국어 지원, 무료 크레딧 |
+| 최고 품질, 예산 있음 | **Google Veo 3 / Google Flow** | https://flow.google.com | Google 계정 필요, 대기 가능 |
+| 빠른 생성, 무료 | **Hailuo AI (MiniMax)** | https://hailuoai.com | 무료 플랜, 인물 동작 자연스러움 |
+| ChatGPT Plus 구독자 | **Sora** | https://sora.com | OpenAI, 긴 클립 가능 |
+
+### 표준 제작 워크플로
+
+```
+1. 스토리보드 확정 (장면 수, 각 장면 내용·길이)
+   ↓
+2. AI 도구로 장면별 클립 생성 (보통 5~8초/클립)
+   - 영어 프롬프트 권장 (품질↑)
+   - 동일 인물 연속성: 같은 프롬프트 구조 유지
+   ↓
+3. 클립 다운로드 → Remotion 프로젝트 public/ 폴더에 배치
+   ↓
+4. Remotion <Video> 컴포넌트로 클립 재생
+5. 그래픽 오버레이: 라벨, 자막, 설명 박스, 화살표 등 추가
+   ↓
+6. npx remotion render → 최종 MP4 출력
+```
+
+### Remotion 클립 합성 패턴
+
+```tsx
+import { Video, AbsoluteFill, staticFile } from "remotion";
+
+// 클립 위에 오버레이 그래픽 합성
+export const ClipScene: React.FC = () => (
+  <AbsoluteFill>
+    {/* 배경 영상 클립 */}
+    <Video src={staticFile("clip-nurse-gauze.mp4")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+
+    {/* 그래픽 오버레이 */}
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      {/* 라벨, 자막, 안내 박스 등 */}
+    </AbsoluteFill>
+  </AbsoluteFill>
+);
+```
+
+### 인물·장면 프롬프트 작성 원칙
+
+- **인물 연속성**: 매 장면 프롬프트에 동일한 인물 묘사 유지
+  - 예: `"Korean female nurse in burgundy scrubs, mid-30s, warm expression"`
+- **카메라**: `medium shot`, `eye level`, `cinematic`
+- **조명**: `soft natural daylight from window, warm tone, high-key`
+- **배경**: `modern hospital room, white walls, IV stand, medical cart`
+- **동작**: 구체적이고 단순하게 (복잡한 동작은 품질 저하)
+
+### 의료폐기물 프로젝트 기준 프롬프트 세트
+
+#### 장면 1 — 간호사 처치 장면
+```
+Korean female nurse in dark burgundy scrubs treating a patient's wound with sterile gauze in a bright modern hospital room. Medium shot, eye level. Soft warm natural light from window. Patient in light blue hospital gown lying in bed. Clean clinical setting with IV stand. Cinematic, realistic.
+```
+
+#### 장면 2 — 의료폐기물 전용 용기에 버리기
+```
+Korean female nurse in dark burgundy scrubs carefully placing used gauze into a yellow medical waste container labeled in Korean. Close-up shot. Bright hospital room background. Focused, deliberate hand movement. Realistic, cinematic.
+```
+
+#### 장면 3 — 일반폐기물 통에 포장재 버리기
+```
+Korean female nurse in dark burgundy scrubs disposing of gauze packaging wrapper into a regular waste bin in a hospital room. Medium close-up. Clean hospital environment. Natural lighting. Realistic, cinematic.
+```
+
+#### 장면 4 — 병실 전체 클린샷
+```
+Clean modern Korean hospital room with natural light streaming through window blinds. Empty bed with light blue blanket, IV stand, medical equipment. Calm, professional atmosphere. Wide shot. Cinematic, warm daylight.
+```
+
+### 클립 파일 관리 규칙
+
+- 저장 위치: `<project>/public/clips/`
+- 네이밍: `scene-01-nurse-treatment.mp4`, `scene-02-medical-waste.mp4` 형식
+- 포맷: MP4 (H.264), 1920×1080, 30fps (Remotion 프로젝트와 동일)
+- 클립 길이: 5~10초 권장 (TransitionSeries 전환 여유 포함)
+
+### Google Flow / Veo 3 접근 방법
+
+1. **Google 계정** (dolpungzzz@gmail.com)으로 로그인
+2. **flow.google.com** 접속 — 대기자 명단 또는 바로 사용 가능 여부 확인
+3. 접근 불가 시 대안: **Google AI Studio** (aistudio.google.com) → Veo API 사용
+4. 또는 **Kling AI** (kling.ai) 즉시 사용 가능 (한국어 지원)
+
+### Claude가 할 수 있는 것 / 없는 것
+
+| 역할 | 가능 여부 |
+|---|---|
+| AI 영상 클립 직접 생성 | ❌ 불가 |
+| 각 장면 프롬프트 작성 | ✅ 가능 |
+| 클립 다운로드 후 Remotion 합성 코드 작성 | ✅ 가능 |
+| 그래픽 오버레이 애니메이션 제작 | ✅ 가능 |
+| 최종 MP4 렌더 | ✅ 가능 |
