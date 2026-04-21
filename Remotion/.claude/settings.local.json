@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-video@latest)",
+      "Bash(npx create-video@latest --help)",
+      "Bash(npx create-video@latest my-remotion-app)",
+      "Bash(node -e ' *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(claude mcp *)",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__javascript_tool"
+    ]
+  }
+}
