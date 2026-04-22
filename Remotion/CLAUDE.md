@@ -374,3 +374,108 @@ Clean modern Korean hospital room with natural light streaming through window bl
 | 클립 다운로드 후 Remotion 합성 코드 작성 | ✅ 가능 |
 | 그래픽 오버레이 애니메이션 제작 | ✅ 가능 |
 | 최종 MP4 렌더 | ✅ 가능 |
+
+---
+
+## Google Veo / Gemini 영상 생성 레퍼런스
+
+> 출처: https://gemini.google/kr/overview/video-generation/ 및 https://deepmind.google/technologies/veo/
+> 실사화 영상 제작 시 Gemini(Veo)를 사용할 경우 이 섹션을 참조.
+
+### 모델 스펙
+
+| 항목 | Veo 3.1 Lite | Veo 3.1 |
+|---|---|---|
+| 목적 | 빠른 생성 (속도 최적화) | 최고 화질 |
+| 클립 길이 | 8초 | 8초 |
+| 해상도 | 1080p | 1080p / 4K |
+| 네이티브 오디오 | ✅ (효과음·대사·음악) | ✅ |
+| 사진→영상 변환 | ✅ | ✅ |
+| 세로 영상 (모바일) | ✅ | ✅ |
+
+### Veo 3.1 핵심 기능
+
+| 기능 | 설명 |
+|---|---|
+| **참고 이미지 업로드** | 캐릭터·객체·배경 스타일을 참고 이미지로 지정, 인물 일관성 유지 |
+| **스타일 레퍼런스** | 원하는 시각 스타일 이미지를 제공하면 해당 미학으로 생성 |
+| **장면 확장** | 첫 번째 클립 마지막 1초를 이어받아 다음 장면으로 자연스럽게 연결 |
+| **첫/마지막 프레임** | 시작·끝 이미지를 지정해 그 사이 장면을 자동 생성 |
+| **카메라 컨트롤** | dolly / zoom / pan / tilt 정밀 제어 |
+| **모션 컨트롤** | 객체의 이동 경로를 직접 지정 |
+| **객체 추가/제거** | 영상 내 특정 요소를 자연스럽게 삽입하거나 제거 |
+| **아웃페인팅** | 원본 프레임 바깥으로 장면을 자연스럽게 확장 |
+| **캐릭터 제어** | 얼굴·몸·목소리로 캐릭터 애니메이션 |
+
+### Veo 프롬프트 7대 요소 (공식 가이드)
+
+프롬프트에 아래 요소를 많이 포함할수록 결과물 통제력이 높아진다.
+
+1. **카메라 프레이밍·움직임**
+   - `low angle`, `eye level`, `bird's eye view`
+   - `dolly in`, `pan left`, `zoom out`, `tracking shot`, `handheld`
+
+2. **스타일**
+   - `cinematic`, `documentary`, `film noir`, `VHS texture`, `clay animation`
+   - 실사화: `photorealistic`, `cinematic`, `realistic`
+
+3. **조명**
+   - `warm natural daylight from window`, `soft diffused light`, `high-key`
+   - `spotlight`, `golden hour`, `studio lighting`
+
+4. **인물 묘사** ← 구체적일수록 좋음
+   - ❌ 나쁜 예: `"a nurse"`
+   - ✅ 좋은 예: `"Korean female nurse in dark burgundy scrubs, mid-30s, warm expression, slight smile"`
+
+5. **장면 설정** ← 구체적일수록 좋음
+   - ❌ 나쁜 예: `"hospital room"`
+   - ✅ 좋은 예: `"bright modern Korean hospital room, white walls, IV stand, medical cart, natural light from window blinds"`
+
+6. **행동·동작**
+   - 단순하고 구체적으로 (복잡한 동작은 품질 저하)
+   - `carefully places`, `gently wraps`, `slowly walks toward`
+
+7. **대사·사운드** (Veo 3 전용)
+   - `with ambient hospital sounds`, `with sound of footsteps`
+   - `she says: "..."` 형태로 대사 삽입 가능
+
+### Veo 실사 인물 영상 프롬프트 구조 템플릿
+
+```
+[카메라 샷] of [인물 상세 묘사] [동작] in [배경 상세].
+[조명]. [분위기/스타일]. [사운드 요소(선택)].
+```
+
+**예시:**
+```
+Medium shot of a Korean female nurse in dark burgundy scrubs, mid-30s,
+carefully placing used gauze into a yellow medical waste container.
+Bright modern hospital room background with IV stand.
+Soft warm natural light from window. Cinematic, photorealistic.
+Ambient hospital sounds.
+```
+
+### Gemini에서 Veo 접근 방법
+
+1. **Gemini 앱** (gemini.google.com) — Google AI Plus/Pro/Ultra 구독 필요 (만 18세 이상)
+2. **Google Flow** (flow.google.com) — AI 영화 제작 특화 도구, Veo 3.1 기반
+3. **Google AI Studio** (aistudio.google.com) — API 형태 접근, 개발자용
+4. **Google Vids** — 업무용 영상 제작
+5. **Vertex AI Studio** — 엔터프라이즈용
+
+> **접근 계정**: dolpungzzz@gmail.com
+> **구독 확인**: Google AI Plus 이상 필요
+
+### 실사화 영상 품질 레퍼런스 (Gemini 소개 페이지 기준)
+
+Gemini 공식 소개 영상(https://gemini.google/kr/overview/video-generation/)에서 보여주는 영상 스타일:
+- **해상도**: 1080p / 4K
+- **조명**: 자연광 위주, 영화적 조명
+- **인물**: 사실적 묘사, 자연스러운 움직임
+- **물리**: 실제 세계 물리 법칙 반영 (물, 천, 연기 등)
+- **오디오**: 효과음·대사·배경음 자동 생성
+- **특징**: 프롬프트 추종 정확도 높음, 인물 표정·동작 자연스러움
+
+### SynthID 워터마크 안내
+
+Veo로 생성된 모든 영상에는 **SynthID** 워터마크가 자동 삽입됨 (육안으로는 보이지 않음). AI 생성 콘텐츠 식별 기술로 저작권·편집 시 참고.
